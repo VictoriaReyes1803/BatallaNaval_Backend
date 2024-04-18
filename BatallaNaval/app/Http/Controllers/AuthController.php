@@ -37,6 +37,7 @@ class AuthController extends Controller
 
        if (!$token = Auth::guard('api:jwt')->attempt($credentials)) {
            return response()->json(['error' => 'No autentificado.'], 401);
+           
        } else if (($user && $user->activado == false)) {
            return response()->json(['error' => 'No se ha verificado.'], 403);
        }

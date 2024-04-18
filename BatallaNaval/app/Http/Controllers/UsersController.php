@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use App\Events\UserUpdated;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AcountActivation;
@@ -11,10 +11,10 @@ use App\Models\Hashes;
 use Illuminate\Support\Facades\URL;
 
 use Illuminate\Support\Facades\Log;
-
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {

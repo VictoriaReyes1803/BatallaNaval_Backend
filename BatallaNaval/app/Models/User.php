@@ -10,8 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     // Rest omitted for brevity
@@ -47,7 +46,7 @@ class User extends Authenticatable
         'apellido_materno',
         'email',
         'password',
-     
+        
     ];
 
     /**
@@ -69,6 +68,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-   
     
 }

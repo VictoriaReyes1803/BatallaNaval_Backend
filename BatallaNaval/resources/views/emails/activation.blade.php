@@ -6,9 +6,7 @@
 <body>
     
 <div class="container">
-<img src="{{ $message->embed(public_path() . '/images/43976.png') }}" alt="LOGO" style="width: 100px;
-                height: 100px;
-                filter: brightness(1.1);" />
+
 <br/> 
 <h1>Bienvenido a Batalla Naval!</h2>
 
