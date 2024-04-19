@@ -27,6 +27,7 @@ Route::group(['prefix' => ''], function () {
 
 Route::post('/register', [UsersController::class, 'register']); 
 Route::get('/activation/{user}', [ActivationController::class, 'activate'])->name('activation');
+
 Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [AuthController::class, 'login'])->name('login');
     Route::group(['middleware' => ['auth:api:jwt']], function () {
