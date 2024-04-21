@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('_games', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['queue', 'playing', 'finished'])->default('queue');
             $table->unsignedBigInteger('player1_id');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('_games');
+        Schema::dropIfExists('games');
     }
 };

@@ -37,3 +37,18 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('me', [AuthController::class, 'me']);
     });
 });
+
+Route::post('/sendevent', function(){
+    event(new TestEvent(['msg' => 'Hello World']));
+    return response()->json(['success' => true]);
+});
+Route::prefix('game')->group(function(){
+    Route::post('/queue', [GameController::class, 'queueGame']);
+    Route::put('/join/random', [GameController::class, 'joinRandomGame']);
+    Route::put('/end', [GameController::class, 'endGame']);
+    Route::post('/dequeue', [GameController::class, 'dequeueGame']);
+    Route::post('/cancel/random', [GameController::class, 'cancelRandomQueue']);
+    Route::post('/send/board', [GameController::class, 'sendBoard']);
+    Route::get('/history', [GameController::class, 'myGameHistory']);
+    Route::post('/notify', [GameController::class, 'sendNotify']);
+});
