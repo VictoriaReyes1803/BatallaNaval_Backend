@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ActivationController;
+use App\Http\Controllers\PartidaController;
 
 
 /*
@@ -35,20 +36,42 @@ Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('refresh', [AuthController::class, 'refresh']);
         Route::get('me', [AuthController::class, 'me']);
+        Route::prefix('game')->group(function(){
+            Route::post('create', [PartidaController::class, 'createGame']);
+            Route::get('find', [PartidaController::class, 'findMatch']);
+        
+            // Route::post('join', [PartidaController::class, 'join']);
+            // Route::post('start', [PartidaController::class, 'start']);
+            // Route::post('attack', [PartidaController::class, 'attack']);
+            // Route::post('leave', [PartidaController::class, 'leave']);
+            // Route::post('end', [PartidaController::class, 'end']);
+            // Route::post('status', [PartidaController::class, 'status']);
+            // Route::post('list', [PartidaController::class, 'list']);
+            // Route::post('chat', [PartidaController::class, 'chat']);
+            // Route::post('history', [PartidaController::class, 'history']);
+            // Route::post('ranking', [PartidaController::class, 'ranking']);
+            // Route::post('replay', [PartidaController::class, 'replay']);
+            // Route::post('replay-list', [PartidaController::class, 'replayList']);
+            // Route::post('replay-save', [PartidaController::class, 'replaySave']);
+            // Route::post('replay-delete', [GameController::class, 'replayDelete']);
+            // Route::post('replay-load', [GameController::class, 'replayLoad']);
+            // Route::post('replay-attack', [GameController::class, 'replayAttack']);
+            // Route::post('replay-chat', [GameController::class, 'replayChat']);
+            // Route::post('replay-end', [GameController::class, 'replayEnd']);
+            // Route::post('replay-status', [GameController::class, 'replayStatus']);
+            // Route::post('replay-history', [GameController::class, 'replayHistory']);
+            // Route::post('replay-ranking', [GameController::class, 'replayRanking']);
+            // Route::post('replay-leave', [GameController::class, 'replayLeave']);
+            // Route::post('replay-start', [GameController::class, 'replayStart']);
+            // Route::post('replay-list', [GameController::class, 'replayList']);
+            // Route::post('replay-save', [GameController::class, 'replaySave']);
+            // Route::post('replay-delete', [GameController::class, 'replayDelete']);
+            
+        });
     });
 });
 
 Route::post('/sendevent', function(){
     event(new TestEvent(['msg' => 'Hello World']));
     return response()->json(['success' => true]);
-});
-Route::prefix('game')->group(function(){
-    Route::post('/queue', [GameController::class, 'queueGame']);
-    Route::put('/join/random', [GameController::class, 'joinRandomGame']);
-    Route::put('/end', [GameController::class, 'endGame']);
-    Route::post('/dequeue', [GameController::class, 'dequeueGame']);
-    Route::post('/cancel/random', [GameController::class, 'cancelRandomQueue']);
-    Route::post('/send/board', [GameController::class, 'sendBoard']);
-    Route::get('/history', [GameController::class, 'myGameHistory']);
-    Route::post('/notify', [GameController::class, 'sendNotify']);
 });

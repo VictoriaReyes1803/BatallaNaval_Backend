@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('player1_id');
             $table->unsignedBigInteger('player2_id')->nullable();
             $table->unsignedBigInteger('winner_id')->nullable();
+            $table->json('player1_ships')->nullable(); // Coordenadas de los barcos del jugador 1
+            $table->json('player2_ships')->nullable(); 
 
             $table->foreign('player1_id')->references('id')->on('users');
             $table->foreign('player2_id')->references('id')->on('users');

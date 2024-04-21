@@ -13,20 +13,27 @@ use Illuminate\Queue\SerializesModels;
 class StartGame
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $data;
+    public $game;
 
-    public function __construct($data)
+    public function __construct($game)
     {
-        $this->data = $data;
+        $this->game = $game;
+    }
+   
+    public function broadcastWith()
+    {
+        return [
+            'game' => $this->game,
+        ];
     }
 
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
     public function broadcastOn()
     {
-        return new channel('lol');
-    }
-
-    public function broadcastAs()
-    {
-        return 'lol';
+        return new Channel('game-created');
     }
 }

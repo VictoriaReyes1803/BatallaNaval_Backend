@@ -14,6 +14,8 @@ class Game extends Model
         'player1_id',
         'player2_id',
         'winner_id',
+        'player1_ships', // Coordenadas de los barcos del jugador 1
+        'player2_ships',
         
     ];
 
