@@ -33,8 +33,8 @@ class PartidaController extends Controller
     public function createGame(Request $request)
     {
         
-        $player1_ships = $this->generateRandomShips($request->input('board_size'));
-        $player2_ships = $this->generateRandomShips($request->input('board_size'));
+        $player1_ships = $this->generateRandomShips();
+        $player2_ships = $this->generateRandomShips();
 
 
         $game = Game::create([
@@ -68,10 +68,10 @@ class PartidaController extends Controller
 
     return response()->json(['message' => 'No se encontró ninguna partida disponible'], 404);
 }
-private function generateRandomShips($boardSize)
+private function generateRandomShips()
 {
     $ships = [];
-
+    $boardSize = 10;
     // Generar 15 barcos
     for ($i = 0; $i < 15; $i++) {
         $ship = [];

@@ -23,6 +23,7 @@ class StartGame
     public function broadcastWith()
     {
         return [
+            'hola' => 'hola',
             'game' => $this->game,
         ];
     }
