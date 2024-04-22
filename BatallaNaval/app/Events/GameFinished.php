@@ -10,28 +10,27 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class StartGame
+class GameFinished
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $game;
 
-    public function __construct($game)
-    {
-        $this->game = $game;
-    }
-   
     /**
-     * Get the channels the event should broadcast on.
+     * Create a new event instance.
+     */
+    public $gameId;
+
+    /**
+     * Create a new event instance.
      *
-     * @return \Illuminate\Broadcasting\Channel|array
+     * @param int $gameId El ID de la partida que ha finalizado
+     * @return void
      */
     public function broadcastOn()
     {
-        return new Channel('game-created');
+        return new Channel('game-finished');
     }
     public function broadcastAs()
     {
-        return 'game-created';
+        return 'game-finished';
     }
-    
 }

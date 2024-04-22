@@ -109,6 +109,7 @@ class PartidaController extends Controller
             'status' => 'playing',
             'player2_id' => $request->user()->id,
         ]);
+        
         return response()->json(['game' => $game], 200);
         event(new StartGame($game));
     }
@@ -132,6 +133,7 @@ class PartidaController extends Controller
         
             // Cambia el estado de la partida a "finished"
             $game->update(['status' => 'finished']);
+            event(new GameFinished($game->id));
         
             return response()->json(['message' => 'Partida finalizada con éxito'], 200);
         }
