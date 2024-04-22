@@ -39,9 +39,10 @@ Route::group(['prefix' => 'auth'], function () {
         Route::prefix('game')->group(function(){
             Route::post('create', [PartidaController::class, 'createGame']);
             Route::get('find', [PartidaController::class, 'findMatch']);
+            Route::post('{id}/finish', [PartidaController::class, 'finishGame']);
+            Route::get('games', [PartidaController::class, 'getGames']);
         
-            // Route::post('join', [PartidaController::class, 'join']);
-            // Route::post('start', [PartidaController::class, 'start']);
+            
             // Route::post('attack', [PartidaController::class, 'attack']);
             // Route::post('leave', [PartidaController::class, 'leave']);
             // Route::post('end', [PartidaController::class, 'end']);
