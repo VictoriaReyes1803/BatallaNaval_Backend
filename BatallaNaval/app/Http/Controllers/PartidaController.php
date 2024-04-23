@@ -80,7 +80,7 @@ class PartidaController extends Controller
 
     public function findMatch(Request $request)
 
-{   
+        {   
     $existingGame = Game::where('status', 'playing')
     ->where(function ($query) use ($request) {
         $query->where('player1_id', $request->user()->id)
@@ -107,7 +107,7 @@ class PartidaController extends Controller
     }
 
     return response()->json(['message' => 'No se encontró ninguna partida disponible'], 404);
-}
+        }
 
         
         public function finishGame(Request $request, $id)
@@ -118,12 +118,12 @@ class PartidaController extends Controller
                 return response()->json(['message' => 'Partida no encontrada'], 404);
             }
         
-            // Verifica si el usuario actual es uno de los jugadores
+          
             if ($game->player1_id !== $request->user()->id && $game->player2_id !== $request->user()->id) {
                 return response()->json(['message' => 'No tienes permiso para finalizar esta partida'], 403);
             }
         
-            // Cambia el estado de la partida a "finished"
+            
             $game->update(['status' => 'finished']);
             event(new GameFinished($game->id));
         
@@ -371,7 +371,7 @@ class PartidaController extends Controller
             }
     
             $playerWhoAttacked = Auth::user()->id;
-                                      //0                //1                 //2                   //3
+                                 
             event(new AttackEvent([$request->gameId, $request->cell, $request->playerAttacked, $playerWhoAttacked]));
     
             return response()->json([
@@ -395,8 +395,7 @@ class PartidaController extends Controller
     
             if ($validator->fails()) {
                 return response()->json(["errors" => $validator->errors()], 400);
-            }
-                                          //0                //1                 //2                   //3
+            }      
             event(new AttackSuccessEvent([$request->hited, $request->turn, $request->cell, $request->playerWhoAttacked]));
     
             return response()->json([
@@ -422,7 +421,6 @@ class PartidaController extends Controller
             if ($validator->fails()) {
                 return response()->json(["errors" => $validator->errors()], 400);
             }
-                                          //0                //1                 //2                   //3
             event(new AttackFailedEvent([$request->hited, $request->turn, $request->cell, $request->playerWhoAttacked]));
     
             return response()->json([
